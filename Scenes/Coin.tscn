@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Coin.gd" type="Script" id=1]
+[ext_resource path="res://Textures/coin_brown_sprite.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 97.3563
+
+[node name="Coin" type="Area2D" groups=[
+"coin",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+silver_weight = 5
+gold_weight = 10
+blue_weight = 20
+rainbow_weight = 50
+copper_value = 1
+silver_value = 2
+gold_value = 5
+blue_value = 10
+rainbow_value = 50
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+offset = Vector2( 0, 10 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+
