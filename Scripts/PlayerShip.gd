@@ -10,12 +10,12 @@ var score = 0
 
 func _ready():
 	set_process(true)
-	
+
 func _process(delta):
-	
+
 	var move_direction = Vector2()
-	
-	if Input.is_action_pressed("move_up"): 
+
+	if Input.is_action_pressed("move_up"):
 		move_direction.y -= 1
 	if Input.is_action_pressed("move_down"):
 			move_direction.y += 1
@@ -31,10 +31,10 @@ func _process(delta):
 
 
 func _on_PlayerShip_area_entered(area):
-	
+
 	if area.is_in_group("mine"):
 		die()
-	
+
 	if area.is_in_group("coin"):
 		score += area.value
 		area.pickup()
@@ -46,8 +46,8 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 	score = 0
-	
+
 func die():
 	hide()
 	$CollisionShape2D.disabled = true
-	#emit_signal("died")
+	emit_signal("died")

@@ -11,10 +11,12 @@ var time = 0
 
 
 func _ready():
+	move_child($EndGame, get_child_count())
 	randomize()
 	screensize = $Player.get_viewport_rect().size
+	$PlayerSpawn.position = screensize / 2
+	$Player.position = $PlayerSpawn.position
 	$GameTime.start()
-	$Player.position = screensize / 2
 	start_game()
 
 func spawn_coin():
@@ -49,6 +51,7 @@ func _on_coin_picked_up():
 	
 func start_game():
 	# Delete the field
+	$EndGame.hide()
 	for child in get_children():
 		if child.is_in_group("coin") or child.is_in_group("mine"):
 			child.queue_free()
@@ -57,6 +60,17 @@ func start_game():
 	update_hud(score, time)
 	$Player.start(screensize / 2)
 	spawn_coin()
+	$GameTime.start()
+	
+	
+func end_game():
+	move_child($EndGame, get_child_count())  # prevents stuff from rendering over it
+	if score > game.highscore:
+		game.set_highscore(score)
+	$EndGame/MarginContainer/MainContainer/CenterContainer/ScoresBox/Numbers/Score.set_text(String(score))
+	$EndGame/MarginContainer/MainContainer/CenterContainer/ScoresBox/Numbers/Highscore.set_text(String(game.highscore))
+	$EndGame.show()
+	$GameTime.stop()
 	
 	
 func update_hud(score, time):
@@ -65,13 +79,23 @@ func update_hud(score, time):
 
 
 func _on_Player_died():
-	start_game()
+	end_game()
 
 
 func _on_Player_increment_score():
 	score = $Player.score
 	update_hud(score, time)
 
+
 func _on_GameTime_timeout():
 	time += 1
 	update_hud(score, time)
+
+
+func _on_EndGame_exit_pressed():
+	get_tree().quit()
+
+
+func _on_EndGame_restart_pressed():
+	start_game()
+	

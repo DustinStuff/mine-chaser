@@ -44,6 +44,7 @@ texture = ExtResource( 2 )
 position = Vector2( -0.253498, 1.17207 )
 frames = SubResource( 3 )
 animation = "default"
+frame = 2
 playing = true
 
 [connection signal="area_entered" from="." to="." method="_on_Mine_area_entered"]

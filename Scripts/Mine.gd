@@ -32,7 +32,7 @@ func _process(delta):
 		velocity = MIN_SPEED
 	
 	position += velocity * player_direction * delta
-	rotation_degrees += velocity * delta
+	rotation_degrees += velocity / 2 * delta
 	
 
 func _on_Mine_area_entered(area):
