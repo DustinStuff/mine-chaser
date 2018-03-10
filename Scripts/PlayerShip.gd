@@ -47,6 +47,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	score = 0
 
+
 func die():
 	hide()
 	$CollisionShape2D.disabled = true

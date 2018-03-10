@@ -14,7 +14,8 @@ func _ready():
 	player = get_parent().get_node("Player")
 	screen_diagnal = Vector2(0, 0).distance_to(get_viewport_rect().size) / 2
 	$AnimatedSprite.playing = true
-	
+
+
 func _process(delta):
 	var velocity = 0
 	var player_direction = Vector2()
@@ -33,7 +34,7 @@ func _process(delta):
 	
 	position += velocity * player_direction * delta
 	rotation_degrees += velocity / 2 * delta
-	
+
 
 func _on_Mine_area_entered(area):
 	if not area.is_in_group("coin"):
