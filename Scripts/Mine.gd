@@ -3,10 +3,12 @@ extends Area2D
 var MIN_SPEED = 50
 var MAX_SPEED = 200
 
-var player = 0
+var player
 var screen_diagnal
 
 var rand_normalized_vector = Vector2()
+
+var explosion = load("res://Scenes/explosion.tscn")
 
 func _ready():
 	rand_normalized_vector.x = rand_range(-1.0, 1.0)
@@ -38,4 +40,11 @@ func _process(delta):
 
 func _on_Mine_area_entered(area):
 	if not area.is_in_group("coin"):
+		
+		var e = explosion.instance()
+		get_parent().add_child(e)
+		e.position = position
+		e.scale *= 0.3
+		e.explode()
+		
 		queue_free()

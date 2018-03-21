@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/New/near_stars.png" type="Texture" id=1]
+[ext_resource path="res://ScrollingBackground.gd" type="Script" id=2]
+
+[node name="ScrollingBackground" type="Sprite" index="0"]
+
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 2048 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Region" ]
+SCALE = 0.25
+SCROLL_RATE = 10
+
+

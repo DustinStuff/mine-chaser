@@ -35,7 +35,7 @@ func spawn_mine():
 	var rpos = Vector2()
 	var m = mine.instance()
 	add_child(m)
-	m.set_scale(Vector2(0.2, 0.2))  # they be large
+	m.set_scale(Vector2(0.2, 0.2))  
 	# If the spawn position is within a no-spawn radius, 
 	# reroll the spawn position until it's not.
 	while not rpos or rpos.distance_to($Player.position) < MINE_MIN_SPAWN_DISTANCE:
